@@ -1,0 +1,82 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "name": "Монобукеты"
+    },
+    {
+      "id": "3",
+      "name": "Цветы в коробке"
+    },
+    {
+      "id": "2",
+      "name": "Цветы в корзине"
+    },
+    {
+      "id": "4",
+      "name": "Цветы поштучно"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "name": "Name 2",
+      "price": 1600,
+      "star": 4.5,
+      "info": "Info 2",
+      "photos": [
+        "https://content2.flowwow-images.com/data/flowers/1000x1000/74/1653232553_57693974.jpg",
+        "https://content2.flowwow-images.com/data/flowers/1000x1000/81/1653232553_84982781.jpg"
+      ],
+      "postId": "1"
+    },
+    {
+      "id": "1716373270196",
+      "name": "dfgsdfgdfg",
+      "price": 74,
+      "star": 0,
+      "info": "sdfasdfsdf",
+      "photos": [
+        "https://content3.flowwow-images.com/data/flowers/524x524/00/1651253533_15968600.jpg"
+      ],
+      "postId": "3"
+    },
+    {
+      "id": "1716449791702",
+      "name": "ывапвыапва ваыпа",
+      "price": 854,
+      "star": 0,
+      "info": "фывфывфывапа пывп ы",
+      "photos": [
+        "https://content3.flowwow-images.com/data/flowers/524x524/43/1705480640_39363343.jpg",
+        "https://content2.flowwow-images.com/data/flowers/1000x1000/69/1622673654_82316869.jpg"
+      ],
+      "postId": "3"
+    },
+    {
+      "id": "1718362013569",
+      "name": "fdfgdfg",
+      "price": 456546,
+      "star": 0,
+      "info": "fgfghf",
+      "photos": [
+        "https://sass-lang.com/assets/img/logos/logo.svg"
+      ],
+      "postId": "2"
+    },
+    {
+      "id": "1718362147644",
+      "name": "dfghdyjk",
+      "price": 4556,
+      "star": 0,
+      "info": "sdfgdsfg",
+      "photos": [
+        "https://content3.flowwow-images.com/data/flowers/524x524/00/1651253533_15968600.jpg"
+      ],
+      "postId": "3"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

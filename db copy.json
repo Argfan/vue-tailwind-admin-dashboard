@@ -1,0 +1,43 @@
+{  
+  "posts": [
+    { "id": "1", "title": "a title", "views": 100 },
+    { "id": "2", "title": "another title", "views": 200 }
+  ],
+  "comments": [
+    { "id": "1", "text": "a comment about post 1", "postId": "1" },
+    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  ],
+
+  "categorys":[    
+    {"id": "1","name": "Монобукеты"},
+    {"id": "2","name": "Цветы поштучно"},
+    {"id": "3","name": "Цветы в коробке"},
+    {"id": "4","name": "Цветы поштучно"}
+  ], 
+  
+  "products": [
+    {
+      "id": "0",
+      "name": "Name 1",
+      "price": 2500,
+      "star": 5,
+      "info": "Info 1",
+      "photos": ["https://content2.flowwow-images.com/data/flowers/1000x1000/81/1653232553_84982781.jpg", "https://content2.flowwow-images.com/data/flowers/1000x1000/74/1653232553_57693974.jpg"],
+      "categoryId": "1"
+    },
+    {
+      "id": "1",
+      "name": "Name 2",
+      "price": 1600,
+      "star": 4.5,
+      "info": "Info 2",
+      "photos": ["https://content2.flowwow-images.com/data/flowers/1000x1000/74/1653232553_57693974.jpg", "https://content2.flowwow-images.com/data/flowers/1000x1000/81/1653232553_84982781.jpg"],
+      "categoryId": "1"
+    }
+  ],
+  
+  "profile": {
+    "name": "typicode"
+  }
+
+}
