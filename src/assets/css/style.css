@@ -302,7 +302,7 @@ body{
 
 .main{
     min-height: 350px;
-    background-image: url('images/fon/bg2.svg');
+    background-image: url('/images/fon/bg2.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
@@ -322,3 +322,122 @@ body{
     fill: #fff;
 }
 
+
+
+.s_sidebar{
+
+}
+.s_sidebar h3{
+
+}
+.cat_container{
+  background-color: transparent;
+}
+.cat_item{
+  cursor: pointer;
+  padding: 0.3rem 0;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(255, 123, 0, 0.5);
+  position: relative;
+  transition: 0.2s;
+  overflow: hidden;
+}
+.cat_item.active{
+  background-color: rgb(255, 123, 0);
+  color: #fff;
+  border-radius: 0.25rem;
+  padding-left: 2rem;
+}
+.cat_item .img{
+  position: absolute;
+  top: .5rem;
+  left: -2rem;
+  width: 1rem;
+  transition: 0.3s;
+}
+.cat_item.active .img, .cat_item:hover .img{
+  left: 0.5rem;
+}
+
+.cat_item:not(.active):hover{
+  background-color: rgba(255, 123, 0, 0.2);
+  color: rgb(192, 93, 0);
+  border-radius: 0.25rem;
+  padding-left: 2rem;
+}
+.p_item{
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+.p_img{
+  height: 200px;
+  overflow: hidden;
+}
+.p_img img{
+  /* object-fit: cover; */
+  width: 100%;
+  height: 100%;
+  transition: 0.2s;
+}
+.p_item:hover .p_img img{
+  transform: scale(1.1) rotate(4deg);
+}
+.p_name{
+  line-height: 1.2rem;
+  border-bottom: 1px dashed orange;
+}
+.p_star svg{
+  width: 1rem;
+}
+.p_button{
+  padding: 0.3rem 0.5rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 132, 0, 0.1);
+  width: 9rem;
+  color: rgb(44, 44, 44);
+  /* font-weight: bold; */
+  /* border: 2px solid rgba(255, 85, 0, 0.457); */
+  
+  text-align: center;
+}
+
+.p_scart svg{width: 1rem; fill: #fff}
+.p_scart{
+  display: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+.p_button:hover{
+  background-color: rgba(255, 132, 0, 1);;
+}
+.p_button:hover .p_price{display: none;}
+.p_button:hover .p_scart{display: flex;}
+
+
+.home{
+    color: #ff6600;
+    opacity: 0.7;
+    cursor: pointer;
+    filter: grayscale(1);
+    transition: 0.3s;
+  }  
+  .home svg{
+    width: 0.9rem; 
+    fill: #ff6600;
+    margin-right: 0.3rem;
+  }
+  .home:hover{
+    opacity: 1;
+    filter: grayscale(0);
+  }
+
+  .t_img_item{
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .t_img_item.active{
+    border-color: #ff6600;
+  }

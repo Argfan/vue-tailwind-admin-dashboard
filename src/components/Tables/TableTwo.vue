@@ -36,14 +36,15 @@ const emptyProduct = {
 }
 
 const product = reactive(emptyProduct)
-
+// id: new Date().getTime().toString(),
+//     photos: [] as String[]
 const addModalOpen = ()=>{
-  Object.assign(product, {
-    ...emptyProduct,
-    id: new Date().getTime().toString(),
-    photos: [] as String[]
-  })
+  Object.assign(product, {...emptyProduct} )
   addModal.value = true
+}
+const editModalOpen = (data: typeof emptyProduct)=>{
+  Object.assign(product, data)
+  editModal.value = true
 }
 const photoAdd = ()=>{
   if(photo.value!==''){
@@ -69,9 +70,17 @@ const getCategory = async()=>{
 const createProduct = async()=>{
   // eslint-disable-next-line no-useless-catch
   try {
-    await axios.post('comments', product)
+    await axios.post('comments', {...product, id: new Date().getTime().toString()} )
     getProducts()
     addModal.value = false
+  } catch (error) {throw error }
+}
+const updateProduct = async()=>{
+  // eslint-disable-next-line no-useless-catch
+  try {
+    await axios.put(`comments/${product.id}`, product)
+    getProducts()
+    editModal.value = false
   } catch (error) {throw error }
 }
 const deleteProduct = async(id: string)=>{
@@ -85,6 +94,11 @@ const deleteProduct = async(id: string)=>{
 const submit = ()=>{
   if(product.name!=='' && product.price!==0 && product.photos.length>0 && product.postId) {
     createProduct()
+  }  
+}
+const update = ()=>{
+  if(product.name!=='' && product.price!==0 && product.photos.length>0 && product.postId) {
+    updateProduct()
   }  
 }
 
@@ -153,17 +167,22 @@ onMounted(()=>{
         <Column field="post.name" header="Категория"></Column>
         <Column header="Фтото">
           <template #body="{data}">
-            <div class="flex">
-              <img v-for="photo, i in data.photos" :key="i" :src="photo" alt="" class="w-10 mr-2">
+            <div class="flex flex-wrap">
+              <img v-for="photo, i in data.photos" :key="i" :src="photo" alt="" class="w-10 mr-2 mb-2">
             </div>
           </template>
         </Column>
         
         <Column field="price" header="Цена"></Column>
-        <Column field="info" header="Инфо" style="width: 2rem;"></Column>
+        <Column field="star" header="Рейтинг"></Column>
+        <Column header="Инфо" style="width: 2rem;">
+          <template #body="{data}">
+            <span class="d_info">{{ data.info }}</span>
+          </template>
+        </Column>
         <Column header="" style="width: 8rem;">
           <template #body="{data}">
-            <Button  icon="pi pi-pencil" severity="success" raised class="text-white mr-2" />
+            <Button  icon="pi pi-pencil" severity="success" raised class="text-white mr-2" @click="editModalOpen(data)"/>
             <Button  icon="pi pi-trash"  severity="danger" raised class="btn-red text-white" 
               @click="deleteProduct(data.id)"/>
           </template>
@@ -190,23 +209,60 @@ onMounted(()=>{
           <InputNumber v-model="product.price" class="flex-auto" inputId="integeronly" />
         </div>
         <div class="flex items-center gap-3 mb-3">
+          <label for="" class="font-semibold w-[6rem]">Рейтинг*</label>
+          <InputNumber v-model="product.star" class="flex-auto" inputId="integeronly" :max-fraction-digits="2"/>
+        </div>
+        <div class="flex items-center gap-3 mb-3">
           <label for="" class="font-semibold w-[6rem]">Фото*</label>
           <InputText  v-model="photo" class="flex-auto" autocomplete="off" />
           <Button aria-label="Submit" icon="pi pi-plus" raised class="text-white" @click="photoAdd"/>
         </div>
         <div class="flex items-center gap-3 mb-3">
           <label for="email" class="font-semibold w-[6rem]"></label>
-          <div class="flex">
+          <div class="flex flex-wrap">
             <img v-for="photo, i in product.photos" :key="i" :src="photo" alt="" class="w-10 mr-2">
           </div>
         </div>
         <div class="flex items-center gap-3 mb-3">
           <label for="email" class="font-semibold w-[6rem]">Инфо</label>
-          <Textarea v-model="product.info" rows="1" class="flex-auto"/>
+          <Textarea v-model="product.info" rows="4" class="flex-auto"/>
         </div>
 
         <div class="flex justify-end gap-2">
           <Button type="button" label="Отмена" severity="secondary" @click="addModal = false"></Button>
+          <Button type="submit" label="Сохранить" class="text-white"></Button>
+        </div>
+      </form>
+    </div>
+  </Dialog>
+  <Dialog v-model:visible="editModal" modal header="Добавить" :style="{ width: '45rem' }" 
+    class="bg-white text-gray-900">
+    <div class="py-3">
+      <form @submit.prevent="update">
+        <div class="flex items-center gap-3 mb-3">
+          <label for="" class="font-semibold w-[6rem]">Название*</label>
+          <InputText  v-model="product.name" class="flex-auto" autocomplete="off"/>
+        </div>
+        <div class="flex items-center gap-3 mb-3">
+          <label for="" class="font-semibold w-[6rem]">Категория*</label>
+          <Dropdown v-model="product.postId" :options="category" optionLabel="name" optionValue="id" 
+            placeholder="Выберите категорию" class="flex-auto" />
+        </div>
+        <div class="flex items-center gap-3 mb-3">
+          <label for="" class="font-semibold w-[6rem]">Цена*</label>
+          <InputNumber v-model="product.price" class="flex-auto" inputId="integeronly" />
+        </div>     
+        <div class="flex items-center gap-3 mb-3">
+          <label for="" class="font-semibold w-[6rem]">Рейтинг*</label>
+          <InputNumber v-model="product.star" class="flex-auto" inputId="integeronly"  :max-fraction-digits="2"/>
+        </div>  
+        <div class="flex items-center gap-3 mb-3">
+          <label for="email" class="font-semibold w-[6rem]">Инфо</label>
+          <Textarea v-model="product.info" rows="4" class="flex-auto"/>
+        </div>
+
+        <div class="flex justify-end gap-2">
+          <Button type="button" label="Отмена" severity="secondary" @click="editModal = false"></Button>
           <Button type="submit" label="Сохранить" class="text-white"></Button>
         </div>
       </form>
@@ -227,6 +283,13 @@ onMounted(()=>{
 
 ul{
   background-color: #fff;
+}
+.d_info{
+  display: block;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 </style>

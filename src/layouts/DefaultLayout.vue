@@ -48,7 +48,7 @@
     </div>
     <div class="relative grow">
   
-      <div class="lg:w-[1024px] mx-auto bg-white h-full -mt-16 rounded-xl shadow-xl overflow-hidden">   
+      <div class="lg:w-[1024px] mx-auto bg-white min-h-full -mt-16 rounded-xl shadow-xl overflow-hidden">   
         <slot></slot>
       </div>
       <div class="s_footer absolute w-full">

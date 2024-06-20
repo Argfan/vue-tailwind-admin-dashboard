@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import AdminProductsView from '@/views/AdminProductsView.vue'
 import Home from '@/views/Home.vue'
+import OneProduct from '@/views/OneProduct.vue'
 
 import Login from '@/layouts/Login.vue'
 
@@ -12,6 +13,14 @@ const routes = [
     component: Home,
     meta: {
       title: 'Home'
+    }
+  },
+  {
+    path: '/oneProduct/:id',
+    name: 'oneProduct',
+    component: OneProduct,
+    meta: {
+      title: 'OneProduct'
     }
   },
   {
