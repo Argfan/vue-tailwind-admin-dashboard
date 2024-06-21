@@ -11,9 +11,7 @@ import { useCartStore } from '@/stores/CartStore';
 const route = useRoute();
 const router = useRouter();
 const count = ref(1)
-
 const cart = useCartStore()
-
 
 const product = ref(new Product())
 const image = ref('')
@@ -87,6 +85,7 @@ onMounted(()=>{})
           <div>{{ product.info }}</div>
         </div>
       </div>
+
     </div>    
   </DefaultLayout>
 </template>

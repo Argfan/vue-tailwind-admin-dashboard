@@ -441,3 +441,25 @@ body{
   .t_img_item.active{
     border-color: #ff6600;
   }
+
+  .p1_button{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .p1_button.p1_1{
+    background-color: #e84128;
+    color: #fff;  
+    border-color: #e84128;
+  }
+  .p1_button.p1_1:hover{
+    filter: brightness(105%);
+  }
+  .p1_button.p1_2{
+    border-color: #e84128;
+  }
+  .p1_button.p1_2:hover{
+    background-color: #e842282b;    
+  }

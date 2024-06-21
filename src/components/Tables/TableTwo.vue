@@ -16,6 +16,7 @@ import ProductTwo from '@/assets/images/product/product-02.png'
 import ProductThree from '@/assets/images/product/product-03.png'
 import ProductFour from '@/assets/images/product/product-04.png'
 import axios from 'axios';
+import Product from '@/model/Product';
 
 const editModal = ref(false)
 const deleteModal = ref(false)
@@ -25,24 +26,16 @@ const products = ref([])
 const category = ref([])
 const photo = ref('')
 
-const emptyProduct = {
-  id: null,
-  name: '',
-  price: 0,
-  star: 0,
-  info: '',
-  photos: [] as String[],
-  postId: null
-}
 
-const product = reactive(emptyProduct)
+
+const product = reactive(new Product())
 // id: new Date().getTime().toString(),
 //     photos: [] as String[]
 const addModalOpen = ()=>{
-  Object.assign(product, {...emptyProduct} )
+  Object.assign(product, new Product())
   addModal.value = true
 }
-const editModalOpen = (data: typeof emptyProduct)=>{
+const editModalOpen = (data: Product)=>{
   Object.assign(product, data)
   editModal.value = true
 }
@@ -161,7 +154,7 @@ onMounted(()=>{
         @click="addModalOpen"/>
     </div>    
     <div class="px-7.5">
-      <DataTable :value="products" tableStyle="min-width: 50rem" tableClass="mb-8">
+      <DataTable :value="products" tableStyle="min-width: 50rem" tableClass="mb-8" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]">
         <Column field="id" header="#"><template #body="{index}">{{ index+1 }}</template></Column>
         <Column field="name" header="Название"></Column>
         <Column field="post.name" header="Категория"></Column>
