@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AdminProductsView from '@/views/AdminProductsView.vue'
 import Home from '@/views/Home.vue'
 import OneProduct from '@/views/OneProduct.vue'
+import CartPage from '@/views/CartPage.vue'
 
 import Login from '@/layouts/Login.vue'
 
@@ -21,6 +22,14 @@ const routes = [
     component: OneProduct,
     meta: {
       title: 'OneProduct'
+    }
+  },
+  {
+    path: '/cartPage',
+    name: 'cartPage',
+    component: CartPage,
+    meta: {
+      title: 'CartPage'
     }
   },
   {

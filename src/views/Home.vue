@@ -25,17 +25,16 @@ const active_category = reactive({
 })
 
 const cartModal = ref(false)
-const addCart = ()=>{
-  console.log(cart.ss);  
+const goCart = ()=>{
+  if(cart.getProducts().length)
+  router.push({ name:'cartPage'})
 }
 
 const cartModalOpen = (p: Product)=>{
   console.log('dasdasd');
   
   Object.assign(product, p)
-  // cart.addProduct({...product, count:1})
-  cart.addProduct(product)
-  cart.addSs('sdsd')
+  cart.addProduct({...product, count:1})
   cartModal.value = true
 }
 
@@ -70,6 +69,24 @@ const goOneProduct = (id: string)=>{
   })
 }
 
+const posta = async()=>{
+  // eslint-disable-next-line no-useless-catch
+  try {
+    await axios.post(`profile`, {
+      a1: 1,
+      b2: 2
+    })
+    
+  } catch (error) {throw error }
+}
+const geta = async()=>{
+  // eslint-disable-next-line no-useless-catch
+  try {
+    await axios.get(`profile`)
+    
+  } catch (error) {throw error }
+}
+
 onMounted(()=>{
   getCategory()
   // getPosts()
@@ -81,7 +98,7 @@ onMounted(()=>{
   <DefaultLayout>
     <div class="flex min-h-full">
       <div class="s_sidebar lg:min-w-[250px] bg-orange-50 p-4">
-        <h3 class="text-orange-900 mb-3 ">Категория</h3>
+        <h3 class="text-orange-900 mb-3 " @click="geta">Категория</h3>
         <ul class="cat_container" >
           <li v-for="c in category" :key="c.id" 
             class="cat_item" 
@@ -97,7 +114,17 @@ onMounted(()=>{
         </ul>
       </div>
       <div class="s_content grow p-4">
-        <h3 class="mb-6">{{active_category.name}}</h3>
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-title-sm" @click="posta">{{active_category.name}}</h3>
+          <div class="p_cart flex justify-center items-center" @click="goCart">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="mr-4"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+            <div class="pp_count mr-3">{{ cart.getProducts().length }}</div>
+            <div>
+              <div class="cart_t text-right">корзина</div>
+              <div class="text-nowrap text-sm text-zinc-900 text-right">{{ cart.getProductAllPrice() }} сом</div>
+            </div>
+          </div>
+        </div>
         <div class="p_container grid grid-cols-3 gap-4 mb-12">
           <div class="p_item shadow-lg shadow-orange-300/50 mb-4" v-for="product in products" :key="product.id" @click="goOneProduct(product.id)">
             <div class="p_img">
@@ -136,13 +163,53 @@ onMounted(()=>{
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div class="p1_button p1_2" @click="cartModal=false">Продолжить покупки</div>
-          <div class="p1_button p1_1 text-gray-50" @click="addCart">Перейти в корзину</div>
+          <div class="p1_button p1_1 text-gray-50" @click="goCart">Перейти в корзину</div>
         </div>
       </div>
     </Dialog>
   </DefaultLayout>
 </template>
 <style>
-  
+  .p_cart{
+    cursor: pointer;
+  }
+  .p_cart:hover svg{
+    fill: orangered;
+    transition: 0.3s;
+  }
+  .p_cart:hover .pp_count{
+    background-color: orangered;
+    color: #fff;
+  }
+  .p_cart:hover .pp_count::before{
+    border-right-color: orangered;
+  }
+  .p_cart svg{
+    width: 1.9rem;
+    fill: orange;
+  }
+  .pp_count{
+    padding: 0.3rem 0.5rem;
+    background-color: rgb(255, 191, 0);
+    color: #222;
+    border-radius: .25rem;
+    font-size: 1.2rem;
+    position: relative;
+    transition: 0.3s;
+  }
+  .pp_count::before{
+    position: absolute;
+    top: 0; left: 0;
+    content: '';
+    width: 0; height: 0;
+    border: 8px solid transparent;
+    border-right-color: rgb(255, 191, 0);
+    transform: translate(-16px, 0.5rem);
+    transition: 0.3s;
+  }
+  .cart_t{
+    color: rgb(255, 157, 0);
+    font-weight: 600;
+  }
 
 </style>
