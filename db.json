@@ -500,6 +500,20 @@
         "id": "4",
         "name": "Цветы поштучно"
       }
+    },
+    {
+      "id": "1719211349666",
+      "name": "Любимой",
+      "price": 2160,
+      "count": 1,
+      "star": 4.82,
+      "info": "Гиперикум - 5 шт.\nЛимониум - 3 шт.\nРоза кустовая - 9 шт.\nКиндер палочки - 4 шт.\nКиндер сюрприз - 1 шт.",
+      "photos": [
+        "https://content3.flowwow-images.com/data/flowers/1000x1000/36/1574257129_5887636.jpg",
+        "https://content2.flowwow-images.com/data/flowers/1000x1000/41/1574257161_85112741.jpg",
+        "https://content2.flowwow-images.com/data/flowers/1000x1000/59/1574257210_19213959.jpg"
+      ],
+      "postId": "2"
     }
   ],
   "profile": {
